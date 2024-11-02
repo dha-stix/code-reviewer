@@ -1,20 +1,14 @@
 "use client";
 import GenerateCode from "@/app/components/GenerateCode";
 import ReviewCode from "@/app/components/ReviewCode";
+import Result from "@/app/components/Result";
 import Link from "next/link";
 import { useState } from "react";
-import Result from "@/app/components/Result";
 
-type ViewProps = "generate" | "review" | "result";
-
-interface ResultType {
-	code: string;
-	explanation: string;
-	language: string; 
-}
+type ViewType = "generate" | "review" | "result"
 
 export default function Home() {
-	const [toggleView, setToggleView] = useState<ViewProps>("generate");
+	const [toggleView, setToggleView] = useState<ViewType>("generate");
     const [resultContent, setResultContent] = useState({code: "", explanation: "", language: ""} as ResultType);
 
 	return (
@@ -32,6 +26,7 @@ export default function Home() {
 					Review Code
 				</button>
 				)}
+
 				{toggleView === "review" && (
 					<button
 					className='bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700 cursor-pointer'
@@ -49,6 +44,7 @@ export default function Home() {
 				)}
 				
 			</nav>
+			
 			{toggleView === "generate" && <GenerateCode setToggleView={setToggleView} setResultContent={setResultContent} />}
 			{toggleView === "review" && <ReviewCode setToggleView={setToggleView} setResultContent={setResultContent} />}
 			{toggleView === "result" && <Result resultContent={resultContent} />}

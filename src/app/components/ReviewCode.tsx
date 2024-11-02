@@ -2,15 +2,10 @@
 import { useEffect, useState } from "react";
 import Editor, { useMonaco } from "@monaco-editor/react";
 
-interface ViewProps {
-	setToggleView: (view: "generate" | "review" | "result") => void;
-	setResultContent: (result: { code: string; explanation: string; language: string }) => void;
-}
 
-export default function ReviewCode({ setToggleView, setResultContent }: ViewProps) {
-	
+export default function ReviewCode({ setToggleView, setResultContent }: CodeProps) {
 	const [languages, setLanguages] = useState<string[]>([]);
-	const [selectedLanguage, setSelectedLanguage] = useState<string>("typescript");
+	const [selectedLanguage, setSelectedLanguage] = useState<string>("");
 	const [codeSnippet, setCodeSnippet] = useState<string>("");
 	const [context, setContext] = useState<string>("");
 	const [disableBtn, setDisableBtn] = useState<boolean>(false);
@@ -88,7 +83,7 @@ export default function ReviewCode({ setToggleView, setResultContent }: ViewProp
 
 				<div className=' w-full mx-auto border-[1px] border-blue-400 mb-5'>
 					<Editor
-                        height='60vh'
+                        height='40vh'
                         key={selectedLanguage}
 						defaultLanguage={selectedLanguage}
 						theme='vs-dark'

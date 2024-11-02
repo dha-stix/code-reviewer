@@ -2,19 +2,10 @@
 import { useEffect, useState } from "react";
 import { useMonaco } from "@monaco-editor/react";
 
-interface ViewProps {
-	setToggleView: (view: "generate" | "review" | "result") => void;
-	setResultContent: (result: {
-		code: string;
-		explanation: string;
-		language: string;
-	}) => void;
-}
-
 export default function GenerateCode({
 	setToggleView,
 	setResultContent,
-}: ViewProps) {
+}: CodeProps) {
 	const [languages, setLanguages] = useState<string[]>([]);
 	const [context, setContext] = useState<string>("");
 	const [disableBtn, setDisableBtn] = useState<boolean>(false);
@@ -71,7 +62,7 @@ export default function GenerateCode({
 					required
 					value={context}
 					onChange={(e) => setContext(e.target.value)}
-					placeholder='Provide a context for the code you need to generate'
+					placeholder='Generate a code that...'
 					className='w-full border-[1px] border-gray-400 rounded px-4 py-2 mb-2'
 				/>
 				<label

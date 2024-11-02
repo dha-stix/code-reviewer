@@ -7,7 +7,6 @@ const client = new OpenAI({
     apiKey: process.env.NEBIUS_API_KEY,
 });
 
-
 export async function POST(req: NextRequest) {
     const { context, language } = await req.json();
 
